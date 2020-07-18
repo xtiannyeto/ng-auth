@@ -1,0 +1,66 @@
+<div fxLayout="column">
+  <h1 class="mat-display-1">Sign Up</h1>
+
+  <mat-dialog-content>
+    <form [formGroup]="signUpForm" fxLayout="column">
+      <mat-form-field appearance="outline">
+        <mat-label>User name</mat-label>
+        <input matInput placeholder="User name" type="text" formControlName="username" />
+        <mat-error>
+          you must enter a user name
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" type="email" formControlName="email" />
+        <mat-error *ngIf="!signUpForm.get('email').valid">
+          {{ getErrorMessageEmail() }}
+        </mat-error>
+      </mat-form-field>
+
+      <div formGroupName="passwords" fxLayout="column">
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" placeholder="Enter your password"
+            [type]="hidePassword ? 'password' : 'text'" />
+          <mat-icon matSuffix (click)="hidePassword = !hidePassword">
+            {{ hidePassword ? "visibility_off" : "visibility" }}
+          </mat-icon>
+          <mat-error *ngIf="!signUpForm.get('passwords').get('password').valid">
+            {{ getErrorMessagePassword() }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Repeat password</mat-label>
+          <input matInput formControlName="repeat" placeholder="Enter your password"
+            [type]="hideRepeat ? 'password' : 'text'" />
+          <mat-icon matSuffix (click)="hideRepeat = !hideRepeat">{{ hideRepeat ? "visibility_off" : "visibility" }}
+          </mat-icon>
+          <mat-error *ngIf="
+              this.signUpForm
+                .get('passwords')
+                .get('repeat')
+                .hasError('required')
+            ">
+            You must repeat your password
+          </mat-error>
+        </mat-form-field>
+
+        <mat-error class="mat-small" *ngIf="this.signUpForm.get('passwords').hasError('areEqual')">
+          passwords are no the same
+        </mat-error>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions fxLayoutAlign="end stretch">
+    <button mat-button color="primary" (click)="signIn()">
+      I already have an account
+    </button>
+    <button fxFlexOffset="1" mat-raised-button color="primary" [disabled]="!signUpForm.valid" (click)="signup()">
+      Singn Up
+    </button>
+  </mat-dialog-actions>
+</div>

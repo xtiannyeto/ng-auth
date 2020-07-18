@@ -1,0 +1,32 @@
+<div fxLayout='column' fxLayoutAlign='space-evenly stretch'>
+  <h1 class="mat-display-1">Sign In</h1>
+  <mat-dialog-content>
+
+    <form [formGroup]="signInForm" fxLayout='column' fxLayoutAlign='space-evenly stretch'>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Enter your password" type="email" formControlName="email">
+        <mat-error *ngIf="!signInForm.controls.email.valid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" placeholder="Enter your password"
+          [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </mat-form-field>
+
+    </form>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions fxLayoutAlign='end stretch'>
+    <button mat-button color='primary' (click)="signUp()">
+      Not Register yet
+    </button>
+    <button fxFlexOffset='1' mat-raised-button color='primary' [disabled]="!signInForm.valid" (click)="signIn()">
+      Sign In
+    </button>
+  </mat-dialog-actions>
+</div>

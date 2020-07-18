@@ -1,0 +1,21 @@
+include:
+  - project: "otokton/otokton-templates"
+    file: "/gitlab-ci/stages/prepare/.env.yml"
+
+  - project: "otokton/otokton-templates"
+    file: "/gitlab-ci/stages/prepare/node/yarn/.prepare.yml"
+
+  - project: "otokton/otokton-templates"
+    file: "/gitlab-ci/stages/build/node/yarn/.build.yml"
+
+  - project: "otokton/otokton-templates"
+    file: "/gitlab-ci/stages/test/node/yarn/karma/.test.yml"
+
+variables:
+  APP_ORG: Otokton
+
+stages:
+  - environnment
+  - prepare
+  - build
+  - test

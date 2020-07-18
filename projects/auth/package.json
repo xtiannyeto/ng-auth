@@ -1,0 +1,12 @@
+{
+  "name": "@otokton/auth",
+  "version": "0.0.14",
+  "peerDependencies": {
+    "@angular/cdk": "^9.0.0",
+    "@angular/common": "^9.0.1",
+    "@angular/core": "^9.0.1",
+    "@angular/flex-layout": "^9.0.0-beta.29",
+    "@angular/material": "^9.0.0"
+  },
+  "license": "ISC"
+}
